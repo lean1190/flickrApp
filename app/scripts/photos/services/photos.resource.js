@@ -21,7 +21,10 @@ function PhotosResource($resource, ENV) {
                 'method': 'flickr.photos.search',
                 'format': 'json',
                 'nojsoncallback': 1,
-                'api_key': ENV.apiKey
+                'api_key': ENV.apiKey,
+                'sort': 'interestingness-desc',
+                'per_page': 1,
+                'extras': 'date_upload, date_taken, owner_name, views, url_q'
             }
         },
         getMostInterestingPhotoByTagsAndUserId: {
@@ -32,8 +35,7 @@ function PhotosResource($resource, ENV) {
                 'nojsoncallback': 1,
                 'api_key': ENV.apiKey,
                 'sort': 'interestingness-desc',
-                'per_page': 1,
-                'extras': 'date_upload, date_taken, owner_name, views, url_q'
+                'extras': 'url_q'
             }
         }
     });

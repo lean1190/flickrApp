@@ -10,8 +10,14 @@ angular
     .module('flickrApp.photos')
     .controller('PhotosListCtrl', PhotosListCtrl);
 
-PhotosListCtrl.$inject = ['$scope', 'photos'];
+PhotosListCtrl.$inject = ['$scope', '$stateParams', 'photos'];
 
-function PhotosListCtrl($scope, photos) {
+function PhotosListCtrl($scope, $stateParams, photos) {
     $scope.photos = photos;
+    $scope.tags = $stateParams.tags;
+    $scope.userId = $stateParams.userId;
+
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 10;
+
 }

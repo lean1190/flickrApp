@@ -23,6 +23,9 @@ function PhotosFactory($log, PhotosResource) {
     function getPhotosByTagsAndUserId(tags, userId) {
         return PhotosResource.getPhotosByTagsAndUserId({ tags: tags, user_id: userId}).$promise.then(function(response) {
             return response.photos.photo;
+        }, function (error) {
+            $log.error('An error ocurred retrieving photos', error);
+            return error;
         });
     }
 

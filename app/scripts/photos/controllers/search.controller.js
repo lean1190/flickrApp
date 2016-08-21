@@ -10,12 +10,13 @@ angular
     .module('flickrApp.photos')
     .controller('PhotosSearchCtrl', PhotosSearchCtrl);
 
-PhotosSearchCtrl.$inject = ['$scope', 'localStorageService', 'photo'];
+PhotosSearchCtrl.$inject = ['$scope', '$stateParams', 'localStorageService', 'photo'];
 
-function PhotosSearchCtrl($scope, localStorageService, photo) {
+function PhotosSearchCtrl($scope, $stateParams, localStorageService, photo) {
     var savedPhotosKey = 'savedPhotos';
 
     $scope.photo = photo;
+    $scope.tags = $stateParams.tags;
     $scope.savedPhotos = localStorageService.get(savedPhotosKey) || [];
 
     $scope.sortOrder = {

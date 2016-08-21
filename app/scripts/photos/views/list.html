@@ -1,1 +1,24 @@
-Photos
+<div class="row">
+    <div class="col-md-12">
+        <p ng-show="photos.length">
+            Showing photos for <strong>{{tags}}</strong> by <strong>{{userId}}</strong>
+        </p>
+        <p ng-show="!photos.length">
+            No photos found for <strong>{{tags}}</strong> by <strong>{{userId}}</strong> :(
+        </p>
+
+        <div class="photo-card only-image"
+            ng-repeat="photo in photos track by $index"
+            uib-pagination
+            ng-model="currentPage"
+            direction-links="false"
+            boundary-links="true"
+            total-items="photos.length"
+            items-per-page="itemsPerPage">
+            
+            <div class="image-wrapper">
+                <img ng-src="{{photo.url_q}}" alt="{{photo.title}}" />
+            </div>
+        </div>
+    </div>
+</div>

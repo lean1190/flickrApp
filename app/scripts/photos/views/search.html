@@ -6,7 +6,7 @@
             </select>
         </div>
 
-        <div ng-repeat="photo in savedPhotos | orderBy: sortOrder.selected track by $index" class="photo-card">
+        <div ng-repeat="photo in savedPhotos | orderBy: sortOrder.selected track by $index" ui-sref="app.photos.list({tags: tags, userId: photo.owner})" class="photo-card">
             <div class="image-wrapper">
                 <img ng-src="{{photo.url_q}}" alt="{{photo.title}}" />
             </div>

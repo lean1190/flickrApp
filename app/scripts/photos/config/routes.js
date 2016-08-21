@@ -25,17 +25,17 @@ angular
                   return PhotosFactory.getMostInterestingPhotoByTagsAndUserId($stateParams.tags, $stateParams.userId);
               }]
           }
-      });
+      })
 
-    //   .state('app.photos.list', {
-    //       url: '/search/:tags/:userId',
-    //       templateUrl: 'scripts/photos/views/list.html',
-    //       controller: 'PhotosListCtrl',
-    //       resolve: {
-    //           photos: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
-    //               return PhotosFactory.getMostInterestingPhotoByTagsAndUserId($stateParams.tags, $stateParams.userId);
-    //           }]
-    //       }
-    //   });
+      .state('app.photos.list', {
+          url: '/list/:tags/:userId',
+          templateUrl: 'scripts/photos/views/list.html',
+          controller: 'PhotosListCtrl',
+          resolve: {
+              photos: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
+                  return PhotosFactory.getPhotosByTagsAndUserId($stateParams.tags, $stateParams.userId);
+              }]
+          }
+      });
 
   });
