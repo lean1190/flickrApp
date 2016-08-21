@@ -2,35 +2,37 @@
 
 /**
  * @ngdoc overview
- * @name flickrAppApp
+ * @name flickrApp
  * @description
- * # flickrAppApp
+ * # flickrApp
  *
- * Main module of the application.
+ * Application module.
  */
 angular
-  .module('flickrAppApp', [
+  .module('flickrApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router',
+
+    'config',
+    'flickrApp.main',
+    'flickrApp.home'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
+  .config(function ($stateProvider, $urlRouterProvider) {
+
+      $stateProvider
+
+      .state('app', {
+          url: '/app',
+          abstract: true,
+          templateUrl: 'scripts/main/views/main.html'
       });
+
+      // If none of the previous routes matches
+      $urlRouterProvider.otherwise('/app/home');
   });
