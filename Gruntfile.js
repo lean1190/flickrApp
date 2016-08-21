@@ -1,4 +1,4 @@
-// Generated on 2016-08-21 using generator-angular 0.15.1
+// Generated on 2016-08-19 using generator-angular 0.15.1
 'use strict';
 
 // # Globbing
@@ -25,11 +25,36 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-ng-constant');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     yeoman: appConfig,
+
+    // Environment settings
+    ngconstant: {
+        // Options for all targets
+        options: {
+            space: '  ',
+            wrap: '"use strict";\n\n {%= __ngModule %}',
+            name: 'config',
+        },
+        // Environment targets
+        development: {
+            options: {
+                dest: '<%= yeoman.app %>/scripts/config.js'
+            },
+            constants: {
+                ENV: {
+                    name: 'development',
+                    apiEndpoint: 'https://api.flickr.com/services/rest',
+                    apiKey: '8b93636d24f88ec1235f57579b38e851'
+                }
+            }
+        }
+    },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -220,7 +245,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -338,7 +363,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'flickrAppApp',
+          module: 'flickrApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -387,11 +412,6 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -437,6 +457,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'ngconstant:development',
       'connect:livereload',
       'watch'
     ]);
