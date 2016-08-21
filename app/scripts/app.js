@@ -18,19 +18,25 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
+    'LocalStorageModule',
 
     'config',
     'flickrApp.main',
-    'flickrApp.home'
+    'flickrApp.home',
+    'flickrApp.photos'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+      // Local storage settings
+      localStorageServiceProvider.setPrefix('flickrApp-');
 
       $stateProvider
 
       .state('app', {
           url: '/app',
           abstract: true,
-          templateUrl: 'scripts/main/views/main.html'
+          templateUrl: 'scripts/main/views/main.html',
+          controller: 'MainCtrl'
       });
 
       // If none of the previous routes matches

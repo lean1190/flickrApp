@@ -7,7 +7,6 @@
  * Back button directive to navigate one step back
  * in the navigation history
  */
-
 angular
     .module('flickrApp.main')
     .directive('backButton', BackButtonDirective);
