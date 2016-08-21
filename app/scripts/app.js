@@ -28,7 +28,7 @@ angular
   .config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 
       // Local storage settings
-      localStorageServiceProvider.setPrefix('flickrApp-');
+      localStorageServiceProvider.setPrefix('flickrApp');
 
       $stateProvider
 

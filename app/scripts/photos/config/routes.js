@@ -13,14 +13,29 @@ angular
       })
 
       .state('app.photos.search', {
-          url: '/search/:tags/:userId',
-          templateUrl: 'scripts/photos/views/list.html',
-          controller: 'PhotosListCtrl',
+          url: '/search',
+          templateUrl: 'scripts/photos/views/search.html',
+          controller: 'PhotosSearchCtrl',
+          params: {
+              tags: '',
+              userId: ''
+          },
           resolve: {
-              photos: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
+              photo: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
                   return PhotosFactory.getMostInterestingPhotoByTagsAndUserId($stateParams.tags, $stateParams.userId);
               }]
           }
       });
+
+    //   .state('app.photos.list', {
+    //       url: '/search/:tags/:userId',
+    //       templateUrl: 'scripts/photos/views/list.html',
+    //       controller: 'PhotosListCtrl',
+    //       resolve: {
+    //           photos: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
+    //               return PhotosFactory.getMostInterestingPhotoByTagsAndUserId($stateParams.tags, $stateParams.userId);
+    //           }]
+    //       }
+    //   });
 
   });
