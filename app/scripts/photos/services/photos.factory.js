@@ -15,15 +15,24 @@ PhotosFactory.$inject = ['$log', 'PhotosResource'];
 function PhotosFactory($log, PhotosResource) {
 
     /**
-     * Search photos with tags and userId passed as parameter
+     * Search photos with tags and userId passed as parameter.
+     * Optionally a page number can be passed
      * @param  {string}  tags   tags to search for
      * @param  {string}  userId the userId of the photos owner
+     * @param  {number}  page   the page number
      * @return {promise} a promise with the found photos
      */
-    function getPhotosByTagsAndUserId(tags, userId) {
-        return PhotosResource.getPhotosByTagsAndUserId({ tags: tags, user_id: userId}).$promise.then(function(response) {
-            return response.photos.photo;
-        }, function (error) {
+    function getPhotosByTagsAndUserId(tags, userId, page) {
+        // Set a default page
+        page = page || 1;
+        return PhotosResource.getPhotosByTagsAndUserId({
+            tags: tags,
+            user_id: userId,
+            per_page: 5,
+            page: page
+        }).$promise.then(function(response) {
+            return response.photos;
+        }, function(error) {
             $log.error('An error ocurred retrieving photos', error);
             return error;
         });
@@ -36,13 +45,16 @@ function PhotosFactory($log, PhotosResource) {
      * @return {promise} a promise with the found photo or an empty object
      */
     function getMostInterestingPhotoByTagsAndUserId(tags, userId) {
-        return PhotosResource.getMostInterestingPhotoByTagsAndUserId({ tags: tags, user_id: userId}).$promise.then(function(response) {
+        return PhotosResource.getMostInterestingPhotoByTagsAndUserId({
+            tags: tags,
+            user_id: userId
+        }).$promise.then(function(response) {
             // If any photos were retrieved
-            if(response.photos && response.photos.photo.length > 0) {
+            if (response.photos && response.photos.photo.length > 0) {
                 return response.photos.photo[0];
             }
             return {};
-        }, function (error) {
+        }, function(error) {
             $log.error('An error ocurred retrieving the most interesting photo', error);
             return error;
         });

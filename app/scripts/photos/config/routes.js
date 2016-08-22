@@ -33,7 +33,7 @@ angular
           controller: 'PhotosListCtrl',
           resolve: {
               photos: ['$stateParams', 'PhotosFactory', function ($stateParams, PhotosFactory) {
-                  return PhotosFactory.getPhotosByTagsAndUserId($stateParams.tags, $stateParams.userId);
+                  return PhotosFactory.getPhotosByTagsAndUserId($stateParams.tags, $stateParams.userId, 1);
               }]
           }
       });

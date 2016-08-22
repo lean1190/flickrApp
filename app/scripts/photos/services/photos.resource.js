@@ -22,9 +22,8 @@ function PhotosResource($resource, ENV) {
                 'format': 'json',
                 'nojsoncallback': 1,
                 'api_key': ENV.apiKey,
-                'sort': 'interestingness-desc',
-                'per_page': 1,
-                'extras': 'date_upload, date_taken, owner_name, views, url_q'
+                'sort': 'interestingness-desc',                
+                'extras': 'url_q'
             }
         },
         getMostInterestingPhotoByTagsAndUserId: {
@@ -35,7 +34,8 @@ function PhotosResource($resource, ENV) {
                 'nojsoncallback': 1,
                 'api_key': ENV.apiKey,
                 'sort': 'interestingness-desc',
-                'extras': 'url_q'
+                'per_page': 1,
+                'extras': 'date_upload, date_taken, owner_name, views, url_q'
             }
         }
     });

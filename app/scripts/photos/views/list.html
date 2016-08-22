@@ -3,22 +3,25 @@
         <p ng-show="photos.length">
             Showing photos for <strong>{{tags}}</strong> by <strong>{{userId}}</strong>
         </p>
-        <p ng-show="!photos.length">
+        <p ng-show="!photos.length" class="warning-message bg-warning">
             No photos found for <strong>{{tags}}</strong> by <strong>{{userId}}</strong> :(
         </p>
 
-        <div class="photo-card only-image"
-            ng-repeat="photo in photos track by $index"
-            uib-pagination
-            ng-model="currentPage"
-            direction-links="false"
-            boundary-links="true"
-            total-items="photos.length"
-            items-per-page="itemsPerPage">
-            
-            <div class="image-wrapper">
-                <img ng-src="{{photo.url_q}}" alt="{{photo.title}}" />
+        <div class="">
+            <div class="photo-card only-image"
+                dir-paginate="photo in photos | itemsPerPage: pagination.itemsPerPage"
+                total-items="pagination.total"
+                current-page="pagination.currentPage">
+
+                <div class="image-wrapper">
+                    <img ng-src="{{photo.url_q}}" alt="{{photo.title}}" />
+                </div>
             </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="">
+            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" boundary-links="true"></dir-pagination-controls>
         </div>
     </div>
 </div>
