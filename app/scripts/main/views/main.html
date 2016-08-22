@@ -12,17 +12,17 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="main-nav-collapse">
-            <form class="navbar-form navbar-left" ng-submit="searchPhotos()">
+            <form name="photosForm" class="navbar-form navbar-left">
                 <div class="form-group">
                     <label for="tags">Tags</label>
-                    <input ng-model="searchForm.tags" type="text" class="form-control" placeholder="e.g: landscape,dog,house" required>
+                    <input ng-model="searchForm.tags" validator="required, tags" no-validation-message="true" type="text" class="form-control" placeholder="e.g: landscape,dog,house" required>
                 </div>
                 <div class="form-group">
                     <label for="tags">User id (optional)</label>
-                    <input ng-model="searchForm.userId" type="text" class="form-control" placeholder="e.g: 144720900@N04">
+                    <input ng-model="searchForm.userId" type="text" no-validation-message="true" class="form-control" placeholder="e.g: 144720900@N04">
                 </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-                <button ng-click="clearForm()" type="button" class="btn btn-danger">Clear</button>
+                <button type="submit" validation-submit="photosForm" ng-click="searchPhotos()" class="btn btn-primary">Search</button>
+                <button type="button" validation-reset="photosForm" ng-click="clearForm()" class="btn btn-danger">Clear</button>
             </form>
         </div>
         <!-- /.navbar-collapse -->
