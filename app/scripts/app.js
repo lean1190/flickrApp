@@ -20,6 +20,9 @@ angular
     'ui.router',
     'ui.bootstrap',
     'LocalStorageModule',
+    'angularUtils.directives.dirPagination',
+    'validation',
+    'validation.rule',
 
     'config',
     'flickrApp.main',
